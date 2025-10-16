@@ -1,0 +1,63 @@
+1. Unnormalized Data (UNF)
+
+Initially, suppose all information (books, members, authors, staff, etc.) was stored in a single large table — with repeating groups like multiple books per member, multiple authors per book, etc.
+
+Example of unnormalized data:
+
+MemberID	MemberName	Email	BookTitle	AuthorName	StaffName	...
+M01	John Doe	john@mail.com
+	Harry Potter	J.K. Rowling	Sarah	...
+M01	John Doe	john@mail.com
+	Fantastic Beasts	J.K. Rowling	Sarah	...
+
+Issues:
+
+Repeated member data
+
+Redundancy and inconsistency risk
+
+Difficult updates and deletions
+
+2. First Normal Form (1NF)
+
+Rule: Eliminate repeating groups — each cell holds only one value.
+
+✅ All entities now have atomic attributes (no multi-valued or repeating fields).
+
+Example:
+
+Member table contains single values per field (no multiple books in one column).
+
+Books table stores one book per row.
+
+Reports table links many-to-many relationships properly.
+
+All tables satisfy 1NF.
+
+3. Second Normal Form (2NF)
+
+Rule: No partial dependency — every non-key attribute must depend on the whole primary key.
+
+For tables with single-attribute primary keys (e.g., AUTHOR, BOOKS, STAFF, Member), all non-key attributes depend on the PK.
+
+For Reports(BOOK_ID, MEMBERS_ID), both fields form the composite PK, and no other attributes exist → 2NF satisfied.
+
+✅ No partial dependencies exist.
+
+All tables satisfy 2NF.
+
+4. Third Normal Form (3NF)
+
+Rule: No transitive dependency — non-key attributes should not depend on other non-key attributes.
+
+Let’s check each:
+
+Table	Potential Dependency	Resolved?	Reason
+Authentication_System	password → login_ID only	✅	Independent attributes
+STAFF	Email, Name depend on STAFF_ID	✅	No transitive dependency
+AUTHOR	Name, Email depend on AUTHOR_ID	✅	All attributes directly depend on PK
+BOOKS	AUTHOR_ID is FK (not transitively dependent)	✅	Normalized correctly
+Member	BOOK_ID and STAFF_ID are FKs	✅	No non-key to non-key dependency
+Reports	Only composite keys	✅	Fully normalized
+
+✅ All tables are in 3NF.
