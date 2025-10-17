@@ -19,3 +19,7 @@ The goal of this repository is to demonstrate my practical SQL skills, attention
 * Normalization Report: Documentation of the 3NF normalization process.
 ## ER Diagram
 ![Library System ER Diagram](images/er_diagram.png)
+## Exercises
+All SQL exercises are in the [exercises](exercises/) folder.
+## Screenshots
+Screenshots of SQL outputs are in the [images](images/) folder.
